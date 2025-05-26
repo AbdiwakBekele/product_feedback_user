@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <title>Product Feedback Collector</title>
+
+    <!-- Custom fonts for this template-->
+    <link
+      href="vendor/fontawesome-free/css/all.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+      rel="stylesheet"
+    />
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet" />
+    <style>
+      .rating-input {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+
+      .rating-input input {
+        display: none;
+      }
+
+      .rating-input label {
+        color: #ddd;
+        font-size: 1.5rem;
+        padding: 0 0.2rem;
+        cursor: pointer;
+        transition: color 0.2s;
+      }
+
+      .rating-input input:checked ~ label,
+      .rating-input input:hover ~ label {
+        color: #ffc107;
+      }
+
+      .rating-input label:hover,
+      .rating-input label:hover ~ label {
+        color: #ffc107;
+      }
+
+      .rating-input input:checked + label {
+        color: #ffc107;
+      }
+    </style>
+  </head>
+
+  <body id="page-top">
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+      <!-- Content Wrapper -->
+      <div id="content-wrapper" class="d-flex flex-column">
+        <!-- Main Content -->
+        <div id="content">
+          <!-- Topbar -->
+          <nav
+            class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow"
+          >
+            <!-- Sidebar Toggle (Topbar) -->
+            <button
+              id="sidebarToggleTop"
+              class="btn btn-link d-md-none rounded-circle mr-3"
+            >
+              <i class="fa fa-bars"></i>
+            </button>
+
+            <!-- Topbar Search -->
+            <form
+              class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+            >
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="form-control bg-light border-0 small"
+                  placeholder="Search for..."
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="button">
+                    <i class="fas fa-search fa-sm"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+
+            <!-- Topbar Navbar -->
+            <ul class="navbar-nav ml-auto">
+              <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+              <li class="nav-item dropdown no-arrow d-sm-none">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="searchDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-search fa-fw"></i>
+                </a>
+                <!-- Dropdown - Messages -->
+                <div
+                  class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+                  aria-labelledby="searchDropdown"
+                >
+                  <form class="form-inline mr-auto w-100 navbar-search">
+                    <div class="input-group">
+                      <input
+                        type="text"
+                        class="form-control bg-light border-0 small"
+                        placeholder="Search for..."
+                        aria-label="Search"
+                        aria-describedby="basic-addon2"
+                      />
+                      <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                          <i class="fas fa-search fa-sm"></i>
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </li>
+
+              <!-- Nav Item - Alerts -->
+              <li class="nav-item dropdown no-arrow mx-1">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="alertsDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <i class="fas fa-bell fa-fw"></i>
+                  <!-- Counter - Alerts -->
+                  <span class="badge badge-danger badge-counter">0</span>
+                </a>
+                <!-- Dropdown - Alerts -->
+                <div
+                  class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="alertsDropdown"
+                >
+                  <h6 class="dropdown-header">Notification</h6>
+                  <a class="dropdown-item d-flex align-items-center" href="#">
+                    <div>
+                      <div class="small text-gray-500">No New Message</div>
+                    </div>
+                  </a>
+                  <a
+                    class="dropdown-item text-center small text-gray-500"
+                    href="#"
+                    >Show All Messages</a
+                  >
+                </div>
+              </li>
+
+              <div class="topbar-divider d-none d-sm-block"></div>
+
+              <!-- Nav Item - User Information -->
+              <li class="nav-item dropdown no-arrow">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="userDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"
+                    >User</span
+                  >
+                  <img
+                    class="img-profile rounded-circle"
+                    src="img/undraw_profile.svg"
+                  />
+                </a>
+                <!-- Dropdown - User Information -->
+                <div
+                  class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                  aria-labelledby="userDropdown"
+                >
+                  <div class="dropdown-divider"></div>
+                  <a
+                    class="dropdown-item"
+                    href="login.html"
+                    data-toggle="modal"
+                    data-target="#logoutModal"
+                  >
+                    <i
+                      class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"
+                    ></i>
+                    Logout
+                  </a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+          <!-- End of Topbar -->
+
+          <!-- Begin Page Content -->
+          <div class="container-fluid">
+            <div
+              class="d-sm-flex align-items-center justify-content-between mb-4"
+            >
+              <h1 class="h3 mb-0 text-gray-800">Product Feedback</h1>
+            </div>
+
+            <!-- Product List Table -->
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">
+                  Available Products for Feedback
+                </h6>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-bordered table-hover"
+                    id="productFeedbackTable"
+                    width="100%"
+                    cellspacing="0"
+                  >
+                    <thead class="thead-light">
+                      <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Release Date</th>
+                        <th>Avg Rating</th>
+                        <th>Feedback Count</th>
+                        <th>Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Product 1 -->
+                      <tr>
+                        <td>Smartphone X</td>
+                        <td>Electronics</td>
+                        <td>2023-05-15</td>
+                        <td>
+                          <div class="rating-stars">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <span class="ml-2">4.0</span>
+                          </div>
+                        </td>
+                        <td>24</td>
+                        <td>
+                          <button
+                            class="btn btn-primary btn-sm give-feedback-btn"
+                            data-product-id="1"
+                            data-product-name="Smartphone X"
+                          >
+                            <i class="fas fa-comment-alt mr-1"></i> Give
+                            Feedback
+                          </button>
+                        </td>
+                      </tr>
+
+                      <!-- Product 2 -->
+                      <tr>
+                        <td>Wireless Earbuds Pro</td>
+                        <td>Audio</td>
+                        <td>2023-06-20</td>
+                        <td>
+                          <div class="rating-stars">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <span class="ml-2">3.5</span>
+                          </div>
+                        </td>
+                        <td>18</td>
+                        <td>
+                          <button
+                            class="btn btn-primary btn-sm give-feedback-btn"
+                            data-product-id="2"
+                            data-product-name="Wireless Earbuds Pro"
+                          >
+                            <i class="fas fa-comment-alt mr-1"></i> Give
+                            Feedback
+                          </button>
+                        </td>
+                      </tr>
+
+                      <!-- Product 3 -->
+                      <tr>
+                        <td>Ultra HD Smart TV</td>
+                        <td>Home Entertainment</td>
+                        <td>2023-04-10</td>
+                        <td>
+                          <div class="rating-stars">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <span class="ml-2">5.0</span>
+                          </div>
+                        </td>
+                        <td>32</td>
+                        <td>
+                          <button
+                            class="btn btn-primary btn-sm give-feedback-btn"
+                            data-product-id="3"
+                            data-product-name="Ultra HD Smart TV"
+                          >
+                            <i class="fas fa-comment-alt mr-1"></i> Give
+                            Feedback
+                          </button>
+                        </td>
+                      </tr>
+
+                      <!-- Product 4 -->
+                      <tr>
+                        <td>Fitness Tracker V3</td>
+                        <td>Wearables</td>
+                        <td>2023-07-05</td>
+                        <td>
+                          <div class="rating-stars">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <i class="far fa-star text-warning"></i>
+                            <span class="ml-2">2.0</span>
+                          </div>
+                        </td>
+                        <td>12</td>
+                        <td>
+                          <button
+                            class="btn btn-primary btn-sm give-feedback-btn"
+                            data-product-id="4"
+                            data-product-name="Fitness Tracker V3"
+                          >
+                            <i class="fas fa-comment-alt mr-1"></i> Give
+                            Feedback
+                          </button>
+                        </td>
+                      </tr>
+
+                      <!-- Product 5 -->
+                      <tr>
+                        <td>Gaming Laptop GT</td>
+                        <td>Computers</td>
+                        <td>2023-03-22</td>
+                        <td>
+                          <div class="rating-stars">
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star text-warning"></i>
+                            <i class="fas fa-star-half-alt text-warning"></i>
+                            <span class="ml-2">4.5</span>
+                          </div>
+                        </td>
+                        <td>29</td>
+                        <td>
+                          <button
+                            class="btn btn-primary btn-sm give-feedback-btn"
+                            data-product-id="5"
+                            data-product-name="Gaming Laptop GT"
+                          >
+                            <i class="fas fa-comment-alt mr-1"></i> Give
+                            Feedback
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Feedback Modal -->
+          <div
+            class="modal fade"
+            id="feedbackModal"
+            tabindex="-1"
+            role="dialog"
+            aria-labelledby="feedbackModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                  <h5 class="modal-title" id="feedbackModalLabel">
+                    Submit Feedback
+                  </h5>
+                  <button
+                    type="button"
+                    class="close text-white"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <form id="feedbackForm">
+                    <input
+                      type="hidden"
+                      id="feedbackProductId"
+                      name="productId"
+                    />
+                    <div class="form-group">
+                      <label for="feedbackProductName">Product</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="feedbackProductName"
+                        readonly
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label>Rating <span class="text-danger">*</span></label>
+                      <div class="rating-input">
+                        <input
+                          type="radio"
+                          id="star5"
+                          name="rating"
+                          value="5"
+                        />
+                        <label for="star5" class="star-label"
+                          ><i class="fas fa-star"></i
+                        ></label>
+
+                        <input
+                          type="radio"
+                          id="star4"
+                          name="rating"
+                          value="4"
+                        />
+                        <label for="star4" class="star-label"
+                          ><i class="fas fa-star"></i
+                        ></label>
+
+                        <input
+                          type="radio"
+                          id="star3"
+                          name="rating"
+                          value="3"
+                        />
+                        <label for="star3" class="star-label"
+                          ><i class="fas fa-star"></i
+                        ></label>
+
+                        <input
+                          type="radio"
+                          id="star2"
+                          name="rating"
+                          value="2"
+                        />
+                        <label for="star2" class="star-label"
+                          ><i class="fas fa-star"></i
+                        ></label>
+
+                        <input
+                          type="radio"
+                          id="star1"
+                          name="rating"
+                          value="1"
+                        />
+                        <label for="star1" class="star-label"
+                          ><i class="fas fa-star"></i
+                        ></label>
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="feedbackComments"
+                        >Comments <span class="text-danger">*</span></label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="feedbackComments"
+                        name="comments"
+                        rows="4"
+                        required
+                      ></textarea>
+                      <small class="form-text text-muted"
+                        >Please be specific about your experience with this
+                        product</small
+                      >
+                    </div>
+
+                    <div class="form-group">
+                      <label for="feedbackEmail">Your Email (optional)</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="feedbackEmail"
+                        name="email"
+                      />
+                      <small class="form-text text-muted"
+                        >If you'd like us to follow up with you</small
+                      >
+                    </div>
+
+                    <div class="form-group form-check">
+                      <input
+                        type="checkbox"
+                        class="form-check-input"
+                        id="allowContact"
+                        name="allowContact"
+                      />
+                      <label class="form-check-label" for="allowContact"
+                        >Allow us to contact you about this feedback</label
+                      >
+                    </div>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    form="feedbackForm"
+                    class="btn btn-primary"
+                  >
+                    Submit Feedback
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- /.container-fluid -->
+        </div>
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+          <div class="container my-auto">
+            <div class="copyright text-center my-auto">
+              <span>Copyright &copy; Product Feedback collector 2025</span>
+            </div>
+          </div>
+        </footer>
+        <!-- End of Footer -->
+      </div>
+      <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div
+      class="modal fade"
+      id="logoutModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button
+              class="close"
+              type="button"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Select "Logout" below if you are ready to end your current session.
+          </div>
+          <div class="modal-footer">
+            <button
+              class="btn btn-secondary"
+              type="button"
+              data-dismiss="modal"
+            >
+              Cancel
+            </button>
+            <a class="btn btn-primary" href="login.html">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Handle feedback button clicks
+        $(".give-feedback-btn").click(function () {
+          const productId = $(this).data("product-id");
+          const productName = $(this).data("product-name");
+
+          // Set product info in modal
+          $("#feedbackProductId").val(productId);
+          $("#feedbackProductName").val(productName);
+
+          // Reset form
+          $("#feedbackForm")[0].reset();
+          $(".rating-input input").prop("checked", false);
+
+          // Show modal
+          $("#feedbackModal").modal("show");
+        });
+
+        // Handle form submission
+        $("#feedbackForm").on("submit", function (e) {
+          e.preventDefault();
+
+          // Get form data
+          const formData = {
+            productId: $("#feedbackProductId").val(),
+            productName: $("#feedbackProductName").val(),
+            rating: $('input[name="rating"]:checked').val(),
+            comments: $("#feedbackComments").val(),
+            email: $("#feedbackEmail").val(),
+            allowContact: $("#allowContact").is(":checked"),
+          };
+
+          // Validate rating was selected
+          if (!formData.rating) {
+            alert("Please select a rating");
+            return;
+          }
+
+          // Validate comments
+          if (!formData.comments.trim()) {
+            alert("Please provide your feedback comments");
+            return;
+          }
+
+          // Here you would typically send the data to your backend
+          console.log("Feedback submitted:", formData);
+
+          // Show success message
+          alert("Thank you for your feedback!");
+
+          // Close modal
+          $("#feedbackModal").modal("hide");
+        });
+      });
+    </script>
+  </body>
+</html>
